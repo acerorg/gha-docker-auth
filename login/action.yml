@@ -16,4 +16,5 @@ runs:
   steps:
     - name: login
       shell: bash
-      run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ inputs.account_id }}.dkr.ecr.${{ inputs.region }}.amazonaws.com
+      run: |
+        aws ecr get-login-password | docker login --username AWS --password-stdin ${{ inputs.account_id }}.dkr.ecr.${{ inputs.region }}.amazonaws.com
