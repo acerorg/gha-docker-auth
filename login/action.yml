@@ -1,0 +1,19 @@
+name: 'Docker Auth - Login'
+description: 'Login to AWS ECR'
+
+inputs:
+  region:
+    description: 'AWS ECR''s region'
+    default: 'ap-southeast-2'
+    required: True
+  account_id:
+    description: 'AWS Account ID that ECR from'
+    default: '840195720915'
+    required: True
+
+runs:
+  using: "composite"
+  steps:
+    - name: login
+      shell: bash
+      run: aws ecr get-login-password | docker login --username AWS --password-stdin ${{ inputs.account_id }}.dkr.ecr.${{ inputs.region }}.amazonaws.com

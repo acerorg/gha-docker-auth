@@ -1,0 +1,19 @@
+name: 'Docker Auth - Logout'
+description: 'Logout of the docker auth'
+
+inputs:
+  region:
+    description: 'AWS ECR''s region'
+    default: 'ap-southeast-2'
+    required: True
+  account_id:
+    description: 'AWS Account ID that ECR from'
+    default: '840195720915'
+    required: True
+
+runs:
+  using: "composite"
+  steps:
+    - name: logout
+      shell: bash
+      run: docker logout ${{ inputs.account_id }}.dkr.ecr.${{ inputs.region }}.amazonaws.com
